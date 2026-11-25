@@ -1,0 +1,28 @@
+# Render Blueprint for the backend (Dashboard -> New -> Blueprint -> pick this repo).
+# Secrets marked sync:false are entered in the Render dashboard, never committed.
+services:
+  - type: web
+    name: lyftr-chatbot-backend
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: LLM_API_KEYS
+        sync: false
+      - key: LLM_MODEL
+        value: gemini/gemini-2.5-flash
+      - key: ALLOWED_ORIGINS
+        sync: false          # e.g. https://your-app.vercel.app
+      - key: ENABLE_FAILURE_SIMULATION
+        value: "true"
+      - key: DATABASE_URL
+        value: sqlite:////data/app.db
+      - key: CACHE_DIR
+        value: /data/llm_cache
+    # On a paid plan, uncomment to keep SQLite + cache across deploys:
+    # disk:
+    #   name: data
+    #   mountPath: /data
+    #   sizeGB: 1

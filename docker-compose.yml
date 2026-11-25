@@ -1,0 +1,39 @@
+name: lyftr-chatbot
+
+services:
+  backend:
+    build:
+      context: ./backend
+    image: lyftr-chatbot-backend
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////data/app.db}
+      CACHE_DIR: ${CACHE_DIR:-/data/llm_cache}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:3000}
+      ENABLE_FAILURE_SIMULATION: ${ENABLE_FAILURE_SIMULATION:-true}
+    ports:
+      - "8000:8000"
+    volumes:
+      - chat-data:/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    image: lyftr-chatbot-frontend
+    environment:
+      # The browser calls the backend directly, so this is the URL as seen from the browser.
+      API_BASE_URL: ${PUBLIC_API_BASE_URL:-http://localhost:8000}
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  chat-data:
