@@ -62,7 +62,7 @@ def sqlite_path_from_url(url: str) -> str:
 
 def load_settings() -> Settings:
     api_keys = _list("LLM_API_KEYS")
-    default_model = os.getenv("LLM_MODEL", "gemini/gemini-2.5-flash").strip()
+    default_model = os.getenv("LLM_MODEL", "gemini/gemini-3.5-flash-lite").strip()
     # Optional per-key models, aligned with LLM_API_KEYS. Missing entries use LLM_MODEL.
     per_key_models = _list("LLM_MODELS")
 

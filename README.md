@@ -72,8 +72,8 @@ The 29 tests run against a small **fake OpenAI-compatible provider** (`backend/t
 | `DATABASE_URL` | `sqlite:////data/app.db` (Docker) | SQLite location |
 | `ALLOWED_ORIGINS` | `http://localhost:3000` | Comma-separated CORS origins |
 | `ENABLE_FAILURE_SIMULATION` | `false` (`true` in compose) | Turns on the `X-Simulate-Failure` hook |
-| `LLM_MODEL` | `gemini/gemini-2.5-flash` | LiteLLM model for every key |
-| `LLM_MODELS` | empty | Optional per-key models aligned with the keys, e.g. `gemini/gemini-2.5-flash,groq/llama-3.1-8b-instant` |
+| `LLM_MODEL` | `gemini/gemini-3.5-flash-lite` | LiteLLM model for every key |
+| `LLM_MODELS` | empty | Optional per-key models aligned with the keys, e.g. `gemini/gemini-3.5-flash-lite,groq/llama-3.1-8b-instant` |
 | `LLM_API_BASE` | empty | Optional OpenAI-compatible base URL |
 | `LLM_TEMPERATURE` / `LLM_MAX_OUTPUT_TOKENS` / `LLM_TIMEOUT_SECONDS` | `0.2` / `1024` / `30` | Sampling settings and the per-key timeout |
 | `DEFAULT_SYSTEM_PROMPT` | `You are a helpful, concise assistant.` | Used when a session has no prompt of its own |
