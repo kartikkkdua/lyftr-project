@@ -188,4 +188,3 @@ UI `data-testid`s: `chat-input`, `send-button`, `assistant-message`, `meta-sourc
 * **Backend health pill, retry button on errors, a new-chat button, light and dark themes.**
 * **Runtime frontend config**: one frontend Docker image works for any backend URL (`API_BASE_URL` is written to `config.js` at container start).
 * **Fake provider for tests**: real HTTP and LiteLLM code paths with no keys or cost.
-# lyftr-project
